@@ -3,6 +3,8 @@
 
 #include "KalmanTracker.h"
 
+using namespace std;
+using namespace cv;
 
 int KalmanTracker::kf_count = 0;
 

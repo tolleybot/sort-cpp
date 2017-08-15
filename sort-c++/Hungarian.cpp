@@ -11,6 +11,7 @@
 
 #include "Hungarian.h"
 
+using namespace std;
 
 HungarianAlgorithm::HungarianAlgorithm(){}
 HungarianAlgorithm::~HungarianAlgorithm(){}

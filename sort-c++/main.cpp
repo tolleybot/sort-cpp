@@ -25,9 +25,10 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip> // to format image names using setw() and setfill()
-#include <io.h>    // to check file existence using POSIX function access(). On Linux include <unistd.h>.
+//#include <io.h>    // to check file existence using POSIX function access(). On Linux include <unistd.h>.
 #include <set>
-
+#include <limits>
+#include <vector>
 #include "Hungarian.h"
 #include "KalmanTracker.h"
 
@@ -38,12 +39,12 @@ using namespace std;
 using namespace cv;
 
 
-
 typedef struct TrackingBox
 {
 	int frame;
 	int id;
 	Rect_<float> box;
+
 }TrackingBox;
 
 
@@ -53,7 +54,7 @@ double GetIOU(Rect_<float> bb_test, Rect_<float> bb_gt)
 	float in = (bb_test & bb_gt).area();
 	float un = bb_test.area() + bb_gt.area() - in;
 
-	if (un < DBL_EPSILON)
+	if (un < std::numeric_limits<double>::epsilon())
 		return 0;
 
 	return (double)(in / un);

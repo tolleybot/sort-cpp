@@ -4,13 +4,12 @@
 #ifndef KALMAN_H
 #define KALMAN_H 2
 
-#include "opencv2/video/tracking.hpp"
-#include "opencv2/highgui/highgui.hpp"
+#include <opencv2/video/tracking.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
-using namespace std;
-using namespace cv;
 
-#define StateType Rect_<float>
+
+#define StateType cv::Rect_<float>
 
 
 // This class represents the internel state of individual tracked objects observed as bounding box.
@@ -43,7 +42,12 @@ public:
 		m_history.clear();
 	}
 
+	/** make next prediction
+	*/
 	StateType predict();
+	/** update kalaman filter with new
+	prediction 
+	*/
 	void update(StateType stateMat);
 	
 	StateType get_state();
