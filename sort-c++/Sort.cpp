@@ -37,8 +37,7 @@ void Sort::associate_detections_to_trackers(const std::vector<cv::Rect>& det,
 const std::vector<TrackingBox>& Sort::update(std::vector<cv::Rect>& det)
 {
 	frame_count++;
-	// used to mark items to remove
-	vector<int> to_del;	
+
 	// clear last results
 	results.clear();
 

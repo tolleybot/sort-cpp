@@ -66,24 +66,6 @@ double GetIOU(Rect_<float> bb_test, Rect_<float> bb_gt)
 int total_frames = 0;
 double total_time = 0.0;
 
-void TestSORT(string seqName, bool display);
-
-
-
-int main()
-{
-	vector<string> sequences = { "PETS09-S2L1", "TUD-Campus", "TUD-Stadtmitte", "ETH-Bahnhof", "ETH-Sunnyday", "ETH-Pedcross2", "KITTI-13", "KITTI-17", "ADL-Rundle-6", "ADL-Rundle-8", "Venice-2" };
-	for (auto seq : sequences)
-		TestSORT(seq, false);
-	//TestSORT("PETS09-S2L1", true);
-
-	// Note: time counted here is of tracking procedure, while the running speed bottleneck is opening and parsing detectionFile.
-	cout << "Total Tracking took: " << total_time << " for " << total_frames << " frames or " << ((double)total_frames / (double)total_time) << " FPS" << endl;
-
-	return 0;
-}
-
-
 
 void TestSORT(string seqName, bool display)
 {
@@ -371,3 +353,19 @@ void TestSORT(string seqName, bool display)
 	if (display)
 		destroyAllWindows();
 }
+
+
+/** main function
+*/
+int main()
+{
+	vector<string> sequences = { "PETS09-S2L1", "TUD-Campus", "TUD-Stadtmitte", "ETH-Bahnhof", "ETH-Sunnyday", "ETH-Pedcross2", "KITTI-13", "KITTI-17", "ADL-Rundle-6", "ADL-Rundle-8", "Venice-2" };
+	for (auto seq : sequences)
+		TestSORT(seq, false);
+
+	// Note: time counted here is of tracking procedure, while the running speed bottleneck is opening and parsing detectionFile.
+	cout << "Total Tracking took: " << total_time << " for " << total_frames << " frames or " << ((double)total_frames / (double)total_time) << " FPS" << endl;
+
+	return 0;
+}
+

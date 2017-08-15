@@ -22,10 +22,12 @@
     <ClCompile Include="Hungarian.cpp" />
     <ClCompile Include="KalmanTracker.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Hungarian.h" />
     <ClInclude Include="KalmanTracker.h" />
+    <ClInclude Include="Sort.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{481C5078-B5CA-4E0E-86FD-D2D2DFD68E64}</ProjectGuid>
