@@ -1,6 +1,7 @@
 #include "Sort.h"
 #include <cmath>
 #include <limits>
+#include <algorithm>
 #include "Hungarian.h"
 
 using namespace std;
@@ -8,6 +9,9 @@ using namespace std;
 // ----------------------------------------------------------------------------------
 Sort::Sort()
 {
+	iouThreshold = 0.3;
+	max_age = 1;
+	min_hits = 3;
 	reset();
 }
 // ----------------------------------------------------------------------------------
@@ -19,6 +23,7 @@ Sort::~Sort()
 void Sort::reset()
 {
 	frame_count = -1;
+
 
 	for (size_t i; i < trackers.size(); i++)
 	{
@@ -82,11 +87,27 @@ void Sort::associate_detections_to_trackers(const std::vector<cv::Rect>& det,
 			matchedItems.insert(matched_indices[i]);
 
 		set_difference(allItems.begin(), allItems.end(),
-			matchedItems.begin(), matchedItems.end(),
-			insert_iterator<set<int>>(unmatched_det, unmatched_det.begin()));
+					   matchedItems.begin(), matchedItems.end(),
+						insert_iterator<set<int>>(unmatched_det, unmatched_det.begin()));
 	}
 
-	// TODO: DON stopped here
+	
+	// filter out matched with low IOU
+	matches.clear();
+	for (unsigned int i = 0; i < trkNum; ++i)
+	{
+		if (matched_indices[i] == -1) // pass over invalid values
+			continue;
+
+		if (1 - iouMatrix[i][matched_indices[i]] < iouThreshold)
+		{		
+			unmatched_det.insert(matched_indices[i]);
+		}
+		else
+		{
+			matches.push_back(i, matched_indices[i]);
+		}
+	}
 
 }
 // ----------------------------------------------------------------------------------

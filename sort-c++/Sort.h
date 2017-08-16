@@ -14,6 +14,7 @@ struct TrackingBox
 	int id;
 	/// the boundig box in top left coordinates, x,y,w,h
 	cv::Rect_<float> box;
+
 };
 
 /** Sort tracking algorithm
@@ -31,6 +32,8 @@ private:
 	int frame_count;
 	/// The last tracking results
 	std::vector<TrackingBox> results;
+	/// Threshold for iou
+	double iouThreshold;
 public:
 	Sort();
 	virtual ~Sort();
