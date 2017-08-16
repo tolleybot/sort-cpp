@@ -50,14 +50,19 @@ private:
 		@param det The newly predicited detections
 		@param trks The currently tracked objects
 		@param -output matches, the indexes of matching det and trks
-		@param -output unmatched_det The indexs of det that could not be matched
-		@param -output unmatched_trks The indexs of trks that could not be matched		
+		@param -output unmatched_det The indexs of det that could not be matched	
 	*/
 	void associate_detections_to_trackers(const std::vector<cv::Rect>& det, 
 										const std::vector<StateType>& trks,
 										std::vector<std::pair<int,int> > & matches,
-										std::vector<int>& unmatched_det,
-										std::vector<int>& unmatched_trks);
+										std::vector<int>& unmatched_det);
 
+
+	/** returns the IOU between to opencv Rect objects
+	  @param rect1 
+	  @param rect2
+	  @return iou 
+	*/
+	double getIOU(const cv::Rect& r1, const cv::Rect& r2);
 };
 
