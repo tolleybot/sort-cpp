@@ -5,6 +5,8 @@
 *.suo
 *.user
 *.sln.docstates
+.idea/
+cmake-build-*/
 
 # Build results
 [Dd]ebug/

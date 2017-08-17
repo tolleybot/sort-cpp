@@ -10,6 +10,16 @@
 // 
 
 #include "Hungarian.h"
+#include <cmath>
+#include <limits>
+
+#ifndef DBL_EPSILON
+#define DBL_EPSILON std::numeric_limits<double>::epsilon()
+#endif
+
+#ifndef DBL_MAX
+#define DBL_MAX std::numeric_limits<double>::max()
+#endif
 
 using namespace std;
 

@@ -2,6 +2,7 @@
 
 #include <opencv2/core.hpp>
 #include <vector>
+#include <set>
 #include "KalmanTracker.h"
 
 /** simple tracking bounding box
@@ -58,7 +59,7 @@ private:
 	void associate_detections_to_trackers(const std::vector<cv::Rect>& det, 
 										const std::vector<StateType>& trks,
 										std::vector<std::pair<int,int> > & matches,
-										std::vector<int>& unmatched_det);
+										std::set<int>& unmatched_det);
 
 
 	/** returns the IOU between to opencv Rect objects

@@ -30,7 +30,7 @@ public:
 
 	~KalmanTracker()
 	{
-		m_history.clear();
+
 	}
 
 	/** make next prediction
